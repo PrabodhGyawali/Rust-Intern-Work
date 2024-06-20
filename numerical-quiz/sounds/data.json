@@ -1,0 +1,102 @@
+[
+    {
+        "SongPath": "BohemianRhapsody.mp3",
+        "Options": ["Bohemian Rhapsody", "We Will Rock You", "Another One Bites The Dust"],
+        "CorrectAnswer": "Bohemian Rhapsody"
+    },
+    {
+        "SongPath": "Thriller.mp3",
+        "Options": ["Billie Jean", "Thriller", "Beat It"],
+        "CorrectAnswer": "Thriller"
+    },
+    {
+        "SongPath": "HotelCalifornia.mp3",
+        "Options": ["Hotel California", "Take It Easy", "Desperado"],
+        "CorrectAnswer": "Hotel California"
+    },
+    {
+        "SongPath": "RollingInTheDeep.mp3",
+        "Options": ["Someone Like You", "Rolling In The Deep", "Set Fire To The Rain"],
+        "CorrectAnswer": "Rolling In The Deep"
+    },
+    {
+        "SongPath": "SmellsLikeTeenSpirit.mp3",
+        "Options": ["Come As You Are", "Smells Like Teen Spirit", "Lithium"],
+        "CorrectAnswer": "Smells Like Teen Spirit"
+    },
+    {
+        "SongPath": "UptownFunk.mp3",
+        "Options": ["Uptown Funk", "24K Magic", "Locked Out Of Heaven"],
+        "CorrectAnswer": "Uptown Funk"
+    },
+    {
+        "SongPath": "ShakeItOff.mp3",
+        "Options": ["Shake It Off", "Blank Space", "Bad Blood"],
+        "CorrectAnswer": "Shake It Off"
+    },
+    {
+        "SongPath": "BlindingLights.mp3",
+        "Options": ["Blinding Lights", "Save Your Tears", "Can't Feel My Face"],
+        "CorrectAnswer": "Blinding Lights"
+    },
+    {
+        "SongPath": "ShapeOfYou.mp3",
+        "Options": ["Shape Of You", "Perfect", "Castle On The Hill"],
+        "CorrectAnswer": "Shape Of You"
+    },
+    {
+        "SongPath": "Havana.mp3",
+        "Options": ["Havana", "Senorita", "Never Be The Same"],
+        "CorrectAnswer": "Havana"
+    },
+    {
+        "SongPath": "SweetChildOMine.mp3",
+        "Options": ["Sweet Child O' Mine", "Welcome To The Jungle", "Paradise City"],
+        "CorrectAnswer": "Sweet Child O' Mine"
+    },
+    {
+        "SongPath": "HeyJude.mp3",
+        "Options": ["Hey Jude", "Let It Be", "Come Together"],
+        "CorrectAnswer": "Hey Jude"
+    },
+    {
+        "SongPath": "LikeAPrayer.mp3",
+        "Options": ["Like A Prayer", "Material Girl", "Vogue"],
+        "CorrectAnswer": "Like A Prayer"
+    },
+    {
+        "SongPath": "Wonderwall.mp3",
+        "Options": ["Wonderwall", "Don't Look Back In Anger", "Champagne Supernova"],
+        "CorrectAnswer": "Wonderwall"
+    },
+    {
+        "SongPath": "HotlineBling.mp3",
+        "Options": ["Hotline Bling", "God's Plan", "In My Feelings"],
+        "CorrectAnswer": "Hotline Bling"
+    },
+    {
+        "SongPath": "RollingStone.mp3",
+        "Options": ["(I Can't Get No) Satisfaction", "Paint It Black", "Jumpin' Jack Flash"],
+        "CorrectAnswer": "(I Can't Get No) Satisfaction"
+    },
+    {
+        "SongPath": "GangnamStyle.mp3",
+        "Options": ["Gangnam Style", "Gentleman", "Daddy"],
+        "CorrectAnswer": "Gangnam Style"
+    },
+    {
+        "SongPath": "AllStar.mp3",
+        "Options": ["All Star", "I'm A Believer", "Walking On The Sun"],
+        "CorrectAnswer": "All Star"
+    },
+    {
+        "SongPath": "LivinOnAPrayer.mp3",
+        "Options": ["Livin' On A Prayer", "You Give Love A Bad Name", "Wanted Dead Or Alive"],
+        "CorrectAnswer": "Livin' On A Prayer"
+    },
+    {
+        "SongPath": "Despacito.mp3",
+        "Options": ["Despacito", "Bailando", "Mi Gente"],
+        "CorrectAnswer": "Despacito"
+    }
+]
