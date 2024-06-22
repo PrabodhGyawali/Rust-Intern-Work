@@ -44,4 +44,5 @@ aplay: main:831: audio open error: No such file or directory
 6. `ps -aux | grep pulseaudio` clearly proves pulseaudio is a background process ran in WSL
 
 7. Finally run `aplay audio.mp3` 
-
+- Apparently it doesn't work when using WSL shell by itself
+- It works when you run the code within VSCode for WSL, so `code numerical-quiz`, then `aplay sound.mp3` should output audio
