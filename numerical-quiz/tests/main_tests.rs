@@ -2,7 +2,6 @@ use std::process::Command;
 use std::process::Output;
 use std::str;
 
-
 #[test]
 fn test_args_path_no_message() {
     let output = Command::new("cargo")
@@ -30,9 +29,11 @@ fn test_args_h() {
     let output = Command::new("cargo")
         .args(&["run", "--", "-h"])
         .output()
-        .expect("Help message: This program plays sounds from a file.\n\
+        .expect(
+            "Help message: This program plays sounds from a file.\n\
                   cargo run [path] [options] -> the path to the file relative to cargo.toml\n\
-                  --no-message -> optional parameter to not display message");
+                  --no-message -> optional parameter to not display message",
+        );
     let output_str = str::from_utf8(&output.stdout).unwrap();
     let expected_output = "Help message: This program plays sounds from a file.\n\
                   cargo run [path] [options] -> the path to the file relative to cargo.toml\n\
@@ -40,5 +41,3 @@ fn test_args_h() {
     println!("{:?}", expected_output);
     assert_eq!(output_str.trim(), expected_output);
 }
-
-
