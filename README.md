@@ -42,7 +42,8 @@ aplay: main:831: audio open error: No such file or directory
     - `grep nameserver /etc/resolv.conf` gives Windows host IP, `ping` it to make sure its correct
 
 6. `ps -aux | grep pulseaudio` clearly proves pulseaudio is a background process ran in WSL
+    - Open `/etc/pulseaudio/default.pa` and add `load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;`
 
-7. Finally run `aplay audio.mp3` 
-- Apparently it doesn't work when using WSL shell by itself
-- It works when you run the code within VSCode for WSL, so `code numerical-quiz`, then `aplay sound.mp3` should output audio
+For some reason things stopped working and most of the resources I used were for WSL1 not WSL2 which has an inbuilt PulseAudio server.
+- I have contacted Microsoft support and asked questions in forums to solve this so I have to but this quiz on hold for now
+
