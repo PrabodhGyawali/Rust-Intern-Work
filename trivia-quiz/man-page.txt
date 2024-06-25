@@ -1,0 +1,53 @@
+NAME
+    freetriva - an online command-line trivia game 
+
+SYNOPSIS
+    freetriva [OPTION]...
+
+DESCRIPTION
+    Generates a command-line trivia through communication with a public API.
+    Don't include the options if you want default values or any
+
+    --questions=SIZE
+        default size is 10 and maximum is 50
+
+    --category=ID
+        ID should be the below 
+            General Knowledge: 1
+            Books: 2
+            Film: 3
+            Music: 4
+            Musicals & Theatres: 5
+            Television: 6
+            Video Games: 7
+            Board Games: 8
+            Nature: 9
+            Computers: 10
+            Mathematics: 11
+            Mythology: 12
+            Sports: 13
+            Geography: 14
+            History: 15
+            Politics: 16
+            Art: 17
+            Celebrities: 18
+            Animals: 19
+            Vehicles: 20
+            Comics: 21
+            Gadgets: 22
+            Japanese Anime & Manga: 23
+            Cartoon & Animations: 24
+
+    --difficulty=LEVEL
+        LEVEL should be the below
+            easy
+            medium
+            hard
+
+    --type=NUM  
+        NUM = 0
+            multiple-choice
+        NUM = 1
+            true-false
+
+;

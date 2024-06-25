@@ -67,11 +67,13 @@ fn main() {
         let file_path = format!("sounds/{}", question.song_path);
         println!("{:?}", file_path);
         // Get an output stream handle to the default physical sound device
-        let (_strem, stream_handle) = OutputStream::try_default().unwrap();
+        let (_stream, stream_handle) = OutputStream::try_default().unwrap();
         // Load a sound from a file, using a path relative to cargo.toml
         let file = BufReader::new(File::open(&file_path).unwrap());
         // Decode that sound file into a source
+        println!("Debug breakpoint 1");
         let source = Decoder::new(file).unwrap();
+        println!("Debug breakpoint 2");
         // Play the sound directly on the device
         stream_handle.play_raw(source.convert_samples());
         // Sound is in a seperate audio thread so we must keep it alive while it plays

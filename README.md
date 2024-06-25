@@ -21,7 +21,6 @@ ALSA lib pcm.c:2664:(snd_pcm_open_noupdate) Unknown PCM default
 aplay: main:831: audio open error: No such file or directory
 ```
 
-
 1. As my environment is WSL 2, I had to manually configure WSL to be able to recognize I have hardware to output sound. After some googling I needed to install the package: `libasound2-dev`
 2. Another useful package was `alsa-utils` for the command `aplay -l`
     - This displays sound recorder and player for  [ALSA](https://en.wikipedia.org/wiki/Advanced_Linux_Sound_Architecture) soundcard drivers
@@ -45,5 +44,17 @@ aplay: main:831: audio open error: No such file or directory
     - Open `/etc/pulseaudio/default.pa` and add `load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;`
 
 For some reason things stopped working and most of the resources I used were for WSL1 not WSL2 which has an inbuilt PulseAudio server.
-- I have contacted Microsoft support and asked questions in forums to solve this so I have to but this quiz on hold for now
+- I have contacted Microsoft support and asked questions in forums to solve this so I have to but this quiz on hold for now.
 
+### Shift to Rasberry Pi
+I literally downloaded Rust and setup an environment on my rasberry pi, also trying to get in `ssh-keygen` to remotely commit from the Rasberry Pi.
+
+Unfortunately, I was stuck on the error: `Bus error` and couldn't figure out a way forward due to my limited OS and Hardware knowledge especially when Rodio is an abstraction layer built on top of complicated low-level software operations.
+
+This will be on hold until I get answers on how to resolve this `Bus error`.
+
+# Command Line Trivia Quiz Game
+- Use arguements to generate a query for an [API](https://opentdb.com/api_config.php)
+- Use the API to get the JSON data
+- Use the JSON data to make a quiz
+- Show quiz score etc.
