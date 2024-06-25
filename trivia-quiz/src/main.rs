@@ -1,41 +1,79 @@
 use std::env;
-use std::fs::File;
-use stdbuffer::BufReader;
+use std::fs;
+use std::collections::HashMap;
+use reqwest;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
 
     // Check if enough arguments are provided
-    if args.len() == 1 || args.len() > 6 {
-        println!("Usage: trivia-quiz [<number_of_questions>] [<categories>] [<difficulties>] [<types>] [<encoding>]");
+    if args.len() > 4 {
+        println!("Usage: trivia-quiz [<number_of_questions>] [<categories>] [<difficulties>] [<types>]");
         println!("Use -h option for how to choose game options.");
         return;
     }
 
-    // Parse command line arguments
-    
+    // Man page check
     for arg in args.iter() {
-        println!("{}", arg);
         if arg == "-h" {
-            let man_page_path = String::from("man_page.txt");
-            let contents = fs::read_to_string(man_page_path)
-                .expect("Something went wrong reading the man page.");
-            println!("{}", contents);
-            return;
+            if args.len() == 2 {
+                let contents =  fs::read_to_string("man-page.txt")
+                    .expect("Something went wrong reading the file");
+                println!("{}", contents);
+                return;
+            }
+            else {
+                println!("Usage: trivia-quiz [<number_of_questions>] [<categories>] [<difficulties>] [<types>] [<encoding>]");
+                println!("Use -h option for how to choose game options.");
+                return;
+            }
         }
     }
-    let number_of_questions: u32 = args[1].parse().unwrap();
-    let categories: &str = &args[2];
-    let difficulties: &str = &args[3];
-    let types: &str = &args[4];
-    let encoding: &str = &args[5];
+    
+    let mut url : String = String::from("https://opentdb.com/api.php?amount=");
+    // Ask for the number of questions
+    println!("How many questions do you want? (default: 10)");
+    let mut number_of_questions = String::new();
+    std::io::stdin().read_line(&mut number_of_questions).expect("Failed to read input");
+    let number_of_questions = number_of_questions.trim().to_lowercase();
+    if !number_of_questions.is_empty() {
+        url.push_str(&number_of_questions);
+    } 
+    else {
+        url.push_str("10");
+    }
+    
+    // Ask for the category
+    println!("Choose a category: (default: any)");
+    let mut category = String::new();
+    std::io::stdin().read_line(&mut category).expect("Failed to read input");
+    let category = category.trim().to_lowercase();
+    if !category.is_empty() {
+        url.push_str("&category=");
+        url.push_str(&category);
+    }
 
-    // TODO: Implement the trivia quiz game logic using the provided settings
+    // Ask for the difficulty
+    println!("Choose a difficulty: (default: any)");
+    let mut difficulty = String::new();
+    std::io::stdin().read_line(&mut difficulty).expect("Failed to read input");
+    let difficulty = difficulty.trim().to_lowercase();
+    if !difficulty.is_empty() {
+        url.push_str("&difficulty=");
+        url.push_str(&difficulty);
+    }
 
-    println!("Trivia Quiz Game");
-    println!("Number of Questions: {}", number_of_questions);
-    println!("Categories: {}", categories);
-    println!("Difficulties: {}", difficulties);
-    println!("Types: {}", types);
+    // Ask for the type
+    println!("Choose a type: (default: any)");
+    let mut _type = String::new();
+    std::io::stdin().read_line(&mut _type).expect("Failed to read input");
+    let _type = _type.trim().to_lowercase();
+    if !_type.is_empty() {
+        url.push_str("&type=");
+        url.push_str(&_type);
+    }
+    println!("{}", url); 
+    
+       
 }
 

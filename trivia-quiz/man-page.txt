@@ -8,7 +8,7 @@ DESCRIPTION
     Generates a command-line trivia through communication with a public API.
     Don't include the options if you want default values or any
 
-    --questions=SIZE
+    --amount=SIZE
         default size is 10 and maximum is 50
 
     --category=ID
@@ -39,15 +39,15 @@ DESCRIPTION
             Cartoon & Animations: 24
 
     --difficulty=LEVEL
-        LEVEL should be the below
-            easy
-            medium
-            hard
+        LEVEL should be one of the integers below
+            1 : easy
+            2 : medium
+            3 : hard
 
     --type=NUM  
-        NUM = 0
-            multiple-choice
         NUM = 1
+            multiple-choice
+        NUM = 2
             true-false
 
 ;

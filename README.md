@@ -58,3 +58,4 @@ This will be on hold until I get answers on how to resolve this `Bus error`.
 - Use the API to get the JSON data
 - Use the JSON data to make a quiz
 - Show quiz score etc.
+- Rust Test Scripts
