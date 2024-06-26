@@ -1,8 +1,8 @@
+// Arguement Tests no longer implementing
 #[cfg(test)]
 mod tests {
     use std::process:Command;
     use std::str;
-
     #[test]
     fn test_no_questions_valid_range() {
         for size in 10..=50 {
@@ -106,3 +106,5 @@ mod tests {
         }
     }
 }
+// In-Console tests:
+#[cfg(test)]

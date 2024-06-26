@@ -3,7 +3,7 @@ use std::fs;
 use std::collections::HashMap;
 use reqwest;
 use serde_json;
-
+use std::io::{self, Write};
 use rand::seq::SliceRandom;
 
 struct Question {
@@ -13,17 +13,9 @@ struct Question {
 }
 
 fn valid_input_range(input: &str, min: u8, max: u8) -> bool {
-    let mut input = input.to_string();
-    if input.is_empty() {
-        return true;
-    }
-    else if {
-        input.parse::<u8>().is_err() || input.parse::<u8>().unwrap() < min || input.parse::<u8>().unwrap() > max
-    } {
-        return true;
-    }
-    else {
-        return false;
+    match input.parse::<u8>() {
+        Ok(num) => num >= min && num <= max, 
+        Err(_) => false, 
     }
 }
 
@@ -55,11 +47,30 @@ fn main() {
     }
     
     let mut url : String = String::from("https://opentdb.com/api.php?amount=");
-    // Ask for the number of questions
-    println!("How many questions do you want? (default: 10)");
+    
+    // Initialize the number of questions
     let mut number_of_questions = String::new();
-    std::io::stdin().read_line(&mut number_of_questions).expect("Failed to read input");
-    let number_of_questions = number_of_questions.trim().to_lowercase();
+    // Loop for input validation
+    loop {
+        print!("No of questions (default=10): ");
+        io::stdout().flush().unwrap(); // Important to understand flushing mechanism for understanding Stream Handling in Rust and other languages
+
+        std::io::stdin().read_line(&mut number_of_questions).expect("Failed to read input");
+        // Input sanitization
+        let sanitized_input = number_of_questions.trim();
+                                                        // .trim() makes String to &str
+        // Input range check
+        if valid_input_range(sanitized_input, 10, 50) || sanitized_input.is_empty() {
+            number_of_questions = sanitized_input.to_string();
+            break;
+        }
+        else {
+            println!("Invalid! Please ensure input number between 10 & 50 or '\\n' for default.");
+            number_of_questions.clear();
+        }
+    }
+
+    // Push to URL
     if !number_of_questions.is_empty() {
         url.push_str(&number_of_questions);
     } 
@@ -68,31 +79,51 @@ fn main() {
         let number_of_questions = String::from("10");
     }
     
-    // Ask for the category
-    println!("Choose a category: (default: any)");
+    // Initialize the category
     let mut category = String::new();
-    std::io::stdin().read_line(&mut category).expect("Failed to read input");
-    category = category.trim().to_lowercase();
-    if !category.is_empty() {
-        while valid_input_range(&category, 1, 20) {
-            println!("Invalid input. \nRewrite your answer: ");
-            category = String::new();
-            std::io::stdin().read_line(&mut category).expect("Failed to read input");
+    loop {
+        print!("Choose a category (default is any): ");
+        io::stdout().flush().unwrap(); // Important to understand flushing mechanism for understanding Stream Handling in Rust and other languages
+        std::io::stdin().read_line(&mut category).expect("Failed to read input");
+        let sanitized_input = category.trim();
+        if valid_input_range(sanitized_input, 1, 20) || sanitized_input.is_empty() {
+            category = sanitized_input.to_string();
+            break;
         }
+        else {
+            println!("Invalid! Please ensure input is between 1 & 20 or '\\n' for default.");
+            category.clear();
+        }
+    }
+    
+    if !category.is_empty() {
         url.push_str("&category=");
         url.push_str(&category);
     }
 
-    // Ask for the difficulty
-    println!("Choose a difficulty: (default: any)");
+    // Initialize the difficulty
     let mut difficulty = String::new();
-    std::io::stdin().read_line(&mut difficulty).expect("Failed to read input");
-    let difficulty = difficulty.trim().to_lowercase();
+
+    loop {
+        print!("Choose a difficulty (default is any): ");
+        io::stdout().flush().unwrap(); // Important to understand flushing mechanism for understanding Stream Handling in Rust and other languages
+        std::io::stdin().read_line(&mut difficulty);
+        let sanitized_input = difficulty.trim();
+        if sanitized_input == "easy" || sanitized_input == "medium" || sanitized_input == "hard" || sanitized_input.is_empty() {
+            difficulty = sanitized_input.to_string();
+            break;
+        }
+        else {
+            println!("Invalid! Please ensure input is either 'easy', 'medium', 'hard' or '\\n' for default.");
+            difficulty.clear();
+        }
+    }
     if !difficulty.is_empty() {
         url.push_str("&difficulty=");
         url.push_str(&difficulty);
     }
 
+    // Set type to multiple for now to NOT OVERCOMPLICATE this task
     url.push_str("&type=multiple");
 
     // Send API GET request
@@ -100,7 +131,7 @@ fn main() {
         .expect("Failed to send GET request");
     let body = response.text()
         .expect("Failed to retrieve response body");
-    println!("{}", body);
+    //Debugging// println!("{}", body);
     let json : HashMap<String, serde_json::Value> = serde_json::from_str(&body)
         .expect("Failed to parse JSON");
 
@@ -122,22 +153,24 @@ fn main() {
                 println!("{}. {}", i, option);
                 i += 1;
             }
-            println!("Enter your answer: ");
             let mut answer = String::new();
+            print!("Enter your answer: ");
+            io::stdout().flush().unwrap();
             std::io::stdin().read_line(&mut answer).expect("Failed to read input");
             while answer.trim().is_empty() || answer.trim().parse::<usize>().is_err() || answer.trim().parse::<usize>().unwrap() > options.len() || answer.trim().parse::<usize>().unwrap() < 1{
-                println!("Invalid input. \nRewrite your answer: ");
+                print!("Invalid input. \nRewrite your answer: ");
+                io::stdout().flush().unwrap();
                 answer = String::new();
                 std::io::stdin().read_line(&mut answer).expect("Failed to read input");
             }
             let answer = answer.trim().parse::<usize>().expect("Failed to parse answer");
 
             if options[answer - 1] == question.answer {
-                println!("Correct!");
+                println!("Correct!\n");
                 score += 1;
             }
             else {
-                println!("Incorrect!");
+                println!("Incorrect!\n");
             }
         }
         println!("Your score: {}/{}", score, number_of_questions);

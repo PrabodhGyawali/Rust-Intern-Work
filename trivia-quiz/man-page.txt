@@ -40,10 +40,11 @@ DESCRIPTION
 
     --difficulty=LEVEL
         LEVEL should be one of the integers below
-            1 : easy
-            2 : medium
-            3 : hard
+            easy
+            medium
+            hard
 
+NOT IMPLEMENTED OPTIONS
     --type=NUM  
         NUM = 1
             multiple-choice
