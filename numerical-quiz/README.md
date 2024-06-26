@@ -52,10 +52,3 @@ I literally downloaded Rust and setup an environment on my rasberry pi, also try
 Unfortunately, I was stuck on the error: `Bus error` and couldn't figure out a way forward due to my limited OS and Hardware knowledge especially when Rodio is an abstraction layer built on top of complicated low-level software operations.
 
 This will be on hold until I get answers on how to resolve this `Bus error`.
-
-# Command Line Trivia Quiz Game
-- Use arguements to generate a query for an [API](https://opentdb.com/api_config.php)
-- Use the API to get the JSON data
-- Use the JSON data to make a quiz
-- Show quiz score etc.
-- Rust Test Scripts
