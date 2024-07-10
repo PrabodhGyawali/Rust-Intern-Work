@@ -1,5 +1,5 @@
 [package]
-name = "Restaurant"
+name = "rusty_fever"
 version = "0.1.0"
 edition = "2021"
 
